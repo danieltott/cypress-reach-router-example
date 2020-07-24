@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Link } from '@reach/router';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 let Home = () => (
   <div>
     <h1>Home</h1>
     <nav>
       <Link to="/">Home</Link> |{' '}
-      <Link to="dashboard" className="dashlink">
+      <Link to="/dashboard" className="dashlink">
         Dashboard
       </Link>
     </nav>
@@ -19,8 +19,14 @@ let Dash = () => <div className="dashboard">Dash</div>;
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <Home path="/" />
-      <Dash path="dashboard" />
+      <Switch>
+        <Route path="/dashboard">
+          <Dash />
+        </Route>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
     </Router>
   </React.StrictMode>,
   document.getElementById('root')
