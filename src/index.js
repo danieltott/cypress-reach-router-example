@@ -1,17 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import { Router, Link } from '@reach/router';
+
+let Home = () => (
+  <div>
+    <h1>Home</h1>
+    <nav>
+      <Link to="/">Home</Link> |{' '}
+      <Link to="dashboard" className="dashlink">
+        Dashboard
+      </Link>
+    </nav>
+  </div>
+);
+
+let Dash = () => <div className="dashboard">Dash</div>;
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Router>
+      <Home path="/" />
+      <Dash path="dashboard" />
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
